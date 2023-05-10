@@ -1,0 +1,32 @@
+
+<div class="table-responsive" style="text-align: center;">
+  <h1 class="text-center">EVENTOS</h1>
+  <button class="btn btn-dark mb-5 mt-5"  [routerLink]="['/dashboard/crearEvento']" *ngIf="usuario.organizador" >Nuevo Evento <i class="fa-solid fa-file-circle-plus"></i></button>
+  <div class="form-control">
+    <input type="text" name="filterNombre" class="form-control" placeholder="Search..." [(ngModel)]="filterNombre" >
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" style="text-align: center;">Fecha y Hora</th>
+        <th scope="col" style="text-align: center;">Lugar</th>
+        <th scope="col" style="text-align: center;">Evento</th>
+        <th scope="col" style="text-align: center;">Tipo de Evento</th>
+        <th scope="col" style="text-align: center;">QR</th>
+        <th scope="col" style="text-align: center;">Fotos</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let evt of eventos | filter:filterNombre">
+      <tr>
+        <td style="text-align: center;">{{ evt.fecha }}</td>
+        <td style="text-align: center;">{{ evt.lugar }}</td>
+        <td style="text-align: center;">{{ evt.nombre }}</td>
+        <td style="text-align: center;">{{ evt.tipo }}</td>
+        <td><img src="{{ evt.qr }}" alt="" > <br><a href="{{evt.qr}}" target="_blank"><i class="fa-solid fa-eye"></i></a></td>
+        <td>
+          <a [routerLink]="['/dashboard/eventofotos',evt.id]" ><img src="assets/picture.png" width="20px" height="20px" alt=""></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,100 @@
+<div *ngIf="loading" class="container position-absolute top-50 start-50 translate-middle text-center">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!loading" class="container position-absolute top-50 start-50 translate-middle text-center">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Fotos Seleccionadas
+        </div>
+        <div class="card-body">
+          <div class="container text-center">
+            <div class="row row-cols-3">
+              <div class="col" *ngFor="let foto of fotos">
+                <img class="img-thumbnail" width="80px" height="80px"
+                  src="{{ foto }}" />
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Pago con Tarjeta
+        </div>
+        <div class="card-body">
+          <form [formGroup]="pagoForm" (ngSubmit)="confirmarPago()" class="credit-card-div mt-2">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+
+                <div class="row ">
+                  <div class="col-md-12">
+                    <input formControlName="cardNumber" type="text" class="form-control" placeholder="Enter Card Number" />
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font"> Expiry Month/Year</span>
+                    <input  formControlName="cardExpireDate" type="text" class="form-control" placeholder="MM/YY" />
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font"> CCV</span>
+                    <input formControlName="cardSecurityNumbre" type="text" class="form-control" placeholder="CCV" />
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-12 pad-adjust">
+
+                    <input formControlName="cardHolderName" type="text" class="form-control" placeholder="Name On The Card" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 pad-adjust">
+                    <label class="checkContainer">Envio
+                      <input type="checkbox" (change)="onCheckboxChange($event)" >
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="form-control" *ngIf="envio">
+                      <label>Direccion</label>
+                      <input
+                        formControlName="direccion"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                      />
+
+                      <label>Telefono</label>
+                      <input
+                        formControlName="telefono"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                      />
+                    </div>
+                    <label>Total a pagar <strong>{{precio}}$</strong></label>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                    <!-- <input type="submit" class="btn btn-danger" value="CANCEL" /> -->
+                    <a [routerLink]="['/dashboard']"  class="btn btn-danger btn-block">Cancel</a>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                    <input type="submit" class="btn btn-warning btn-block" value="PAY NOW" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

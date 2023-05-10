@@ -1,0 +1,45 @@
+<div class="galeria mt-5">
+  <h1>Fotos <strong> 1$ c/u </strong></h1>
+  <!-- (change)="choseFile($event)" -->
+  <!-- <input *ngIf="usuario.fotografo" type="file" class="form-control" > -->
+  <div class="input-group mb-3" *ngIf="usuario.fotografo">
+    <label class="input-group-text" for="inputGroupFile01">Foto</label>
+    <input type="file" class="form-control" (change)="choseFile($event)" #inputFile>
+    <button type="submit" class="btn btn-dark btn-block" (click)="addImgAlStoreFB()">Subir Foto</button>
+  </div>
+  <div class="progress">
+    <!-- style="width: 35%" -->
+    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"
+      aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style]="style">
+      {{progreso}}%</div>
+  </div>
+
+  <div class="container text-center mt-5 mb-3">
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-cart-shopping"><span> {{carrito.length}} </span></i>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-success" (click)="pasarFotos()">Pagar</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div class="linea"></div>
+  <div class="container text-center">
+    <div class="row row-cols-3">
+      <div class="col contenedor-imagenes">
+        <div class="imagen mb-5 mt-2" *ngFor="let foto of fotos" style="text-align: center;">
+          <img src="{{foto}}" alt="">
+          <button class="btn btn-outline-warning mt-2" (click)="agregarAlCarrito(foto)"> agregar a carrito <strong>1$</strong></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

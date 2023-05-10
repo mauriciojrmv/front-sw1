@@ -1,0 +1,87 @@
+<!-- <h2>Registro de usuario</h2>
+
+<form [formGroup]="formReg" (ngSubmit)="addData()">
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">avatar</label>
+        <input type="file" class="form-control" (change)="choseFile($event)">
+    </div>
+    <input type="submit" value="Registrarse">
+</form> -->
+
+<div *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<div class="global-container">
+  <div class="card login-form">
+    <div class="card-body">
+      <h3 class="card-title text-center">Registro de usuario</h3>
+      <div class="card-text">
+        <!--
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+        <form [formGroup]="formReg" (ngSubmit)="addData()">
+          <!-- to error: add class "has-danger" -->
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control" id="asdf" aria-describedby="emailHelp"
+              formControlName="nombre">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Telefono</label>
+            <input type="text" class="form-control" id="loqsea" aria-describedby="emailHelp"
+              formControlName="telefono">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1"
+              formControlName="password">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Rol</label>
+            <select formControlName="rol" class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">Cliente</option>
+              <option value="2">Fotografo</option>
+              <option value="3">Organizador</option>
+            </select>
+          </div>
+          <label for="exampleInputPassword1">Foto de Perfil</label>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">avatar</label>
+            <input type="file" class="form-control" (change)="choseFile($event)">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+          <button class="btn btn-danger btn-block float-end" [routerLink]="['/login']">Cancelar</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupFile01">avatar</label>
+    <input type="file" class="form-control" id="inputGroupFile01">
+    <button type="submit" > Subir Img </button>
+</div> -->

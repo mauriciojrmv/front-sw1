@@ -1,0 +1,108 @@
+<div *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<div class="container" *ngIf="!loading">
+  <div class="col1">
+    <h4>
+      Suscribite y Empieza hoy a ganar dinero con tus fotografías, por tan solo
+      {{ precio }}$ al mes
+    </h4>
+    <div class="card">
+      <div class="front">
+        <div class="type">
+          <img class="bankid" />
+        </div>
+        <span class="chip"></span>
+        <span class="card_number"
+          >&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+          &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+        </span>
+        <div class="date"><span class="date_value">MM / YYYY</span></div>
+        <span class="fullname">FULL NAME</span>
+      </div>
+      <div class="back">
+        <div class="magnetic"></div>
+        <div class="bar"></div>
+        <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+        <span class="chip"></span
+        ><span class="disclaimer"
+          >This card is property of Random Bank of Random corporation. <br />
+          If found please return to Random Bank of Random corporation - 21968
+          Paris, Verdi Street, 34
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col2">
+    <form [formGroup]="pagoForm" (ngSubmit)="realizarPagoFotografo()">
+      <label>Card Number</label>
+      <input
+        formControlName="cardNumber"
+        class="number"
+        type="text"
+        ng-model="ncard"
+        maxlength="19"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          pagoForm.get('cardNumber')?.hasError('required') &&
+          pagoForm.get('cardNumber')?.touched
+        "
+        >El numero <strong>es Requerido</strong></span
+      >
+      <label>Cardholder name</label>
+      <input
+        formControlName="cardHolderName"
+        class="inputname"
+        type="text"
+        placeholder=""
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          pagoForm.get('cardHolderName')?.hasError('required') &&
+          pagoForm.get('cardHolderName')?.touched
+        "
+        >El Card Holder <strong>es Requerido</strong></span
+      >
+      <label>Expiry date</label>
+      <input
+        formControlName="cardExpireDate"
+        class="expire"
+        type="text"
+        placeholder="MM / YYYY"
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          pagoForm.get('cardExpireDate')?.hasError('required') &&
+          pagoForm.get('cardExpireDate')?.touched
+        "
+        >La fecha de expiracion <strong>es Requerido</strong></span
+      >
+      <label>Security Number</label>
+      <input
+        formControlName="cardSecurityNumbre"
+        class="ccv"
+        type="text"
+        placeholder="CVC"
+        maxlength="3"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      />
+      <span
+        class="text-danger"
+        *ngIf="
+          pagoForm.get('cardSecurityNumbre')?.hasError('required') &&
+          pagoForm.get('cardSecurityNumbre')?.touched
+        "
+        >El CVC <strong>es Requerido</strong></span
+      >
+      <button type="submit" class="buy">
+        <i class="fa-solid fa-money-check-dollar"></i> Comprar
+      </button>
+    </form>
+  </div>
+</div>
